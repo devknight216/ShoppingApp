@@ -15,20 +15,6 @@ import {APP_URL} from '../../setup/configs'
 // Component
 class Onboarding extends Component {
 
-  toggleVisible = (visible) => {
-    this.setState({
-      visible
-    })
-  }
-  nextStep = () => {
-    this.setState(state => ({
-      currentStep: state.currentStep + 1
-    }))
-  }
-  close = () => {
-    this.toggleVisible(false)
-  }
-
   constructor(props) {
     super(props)
 
@@ -45,6 +31,22 @@ class Onboarding extends Component {
 
       window.localStorage.setItem('onboarding', 1)
     }
+  }
+
+  toggleVisible = (visible) => {
+    this.setState({
+      visible
+    })
+  }
+
+  nextStep = () => {
+    this.setState(state => ({
+      currentStep: state.currentStep + 1
+    }))
+  }
+
+  close = () => {
+    this.toggleVisible(false)
   }
 
   render() {

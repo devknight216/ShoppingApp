@@ -15,10 +15,6 @@ import ProductItem from '../product/Item'
 // Component
 class Related extends Component {
 
-  refresh = (productId) => {
-    this.props.getProductRelatedList(productId)
-  }
-
   componentDidMount() {
     this.refresh(this.props.productId)
   }
@@ -27,6 +23,10 @@ class Related extends Component {
     if (nextProps.productId !== this.props.productId) {
       this.refresh(nextProps.productId)
     }
+  }
+
+  refresh = (productId) => {
+    this.props.getProductRelatedList(productId)
   }
 
   render() {

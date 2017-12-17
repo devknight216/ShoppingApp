@@ -22,10 +22,6 @@ import Related from './Related'
 // Component
 class Detail extends Component {
 
-  refresh = (slug) => {
-    this.props.get(slug)
-  }
-
   // Runs on server only for SSR
   static fetchData({store, params}) {
     return store.dispatch(get(params.slug))
@@ -40,6 +36,10 @@ class Detail extends Component {
     if (nextProps.match.params.slug !== this.props.match.params.slug) {
       this.refresh(nextProps.match.params.slug)
     }
+  }
+
+  refresh = (slug) => {
+    this.props.get(slug)
   }
 
   render() {

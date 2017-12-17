@@ -30,121 +30,6 @@ import AdminMenu from '../common/Menu'
 // Component
 class CreateOrEdit extends Component {
 
-  getProduct = (productId) => {
-    if (productId > 0) {
-      this.props.getProductById(productId)
-        .then(response => {
-          if (response.data.errors && response.data.errors.length > 0) {
-            this.props.messageShow(response.data.errors[0].message)
-          } else {
-            this.setState({
-              product: response.data.data.productById
-            })
-          }
-        })
-        .catch(error => {
-          this.props.messageShow('There was some error fetching product types. Please try again.')
-        })
-    }
-  }
-  onChange = (event) => {
-    let product = this.state.product
-    product[event.target.name] = event.target.value
-
-    if (event.target.name === 'name') {
-      product.slug = slug(event.target.value)
-    }
-
-    this.setState({
-      product
-    })
-  }
-  onChangeSelect = (event) => {
-    let product = this.state.product
-    product[event.target.name] = parseInt(event.target.value)
-
-    this.setState({
-      product
-    })
-  }
-  onSubmit = (event) => {
-    event.preventDefault()
-
-    this.setState({
-      isLoading: true
-    })
-
-    this.props.messageShow('Saving product, please wait...')
-
-    // Save product
-    this.props.productCreateOrUpdate(this.state.product)
-      .then(response => {
-        this.setState({
-          isLoading: false
-        })
-
-        if (response.data.errors && response.data.errors.length > 0) {
-          this.props.messageShow(response.data.errors[0].message)
-        } else {
-          this.props.messageShow('Signed up successfully.')
-
-          this.props.history.push(admin.productList.path)
-        }
-      })
-      .catch(error => {
-        this.props.messageShow('There was some error. Please try again.')
-
-        this.setState({
-          isLoading: false
-        })
-      })
-      .then(() => {
-        window.setTimeout(() => {
-          this.props.messageHide()
-        }, 5000)
-      })
-  }
-  onUpload = (event) => {
-    this.props.messageShow('Uploading file, please wait...')
-
-    this.setState({
-      isLoading: true
-    })
-
-    let data = new FormData()
-    data.append('file', event.target.files[0])
-
-    // Upload image
-    this.props.upload(data)
-      .then(response => {
-        if (response.status === 200) {
-          this.props.messageShow('File uploaded successfully.')
-
-          let product = this.state.product
-          product.image = `/images/uploads/${ response.data.file }`
-
-          this.setState({
-            product
-          })
-        } else {
-          this.props.messageShow('Please try again.')
-        }
-      })
-      .catch(error => {
-        this.props.messageShow('There was some error. Please try again.')
-
-      })
-      .then(() => {
-        this.setState({
-          isLoading: false
-        })
-
-        window.setTimeout(() => {
-          this.props.messageHide()
-        }, 5000)
-      })
-  }
-
   constructor(props) {
     super(props)
 
@@ -205,6 +90,125 @@ class CreateOrEdit extends Component {
 
     // Get product details (edit case)
     this.getProduct(parseInt(this.props.match.params.id))
+  }
+
+  getProduct = (productId) => {
+    if (productId > 0) {
+      this.props.getProductById(productId)
+        .then(response => {
+          if (response.data.errors && response.data.errors.length > 0) {
+            this.props.messageShow(response.data.errors[0].message)
+          } else {
+            this.setState({
+              product: response.data.data.productById
+            })
+          }
+        })
+        .catch(error => {
+          this.props.messageShow('There was some error fetching product types. Please try again.')
+        })
+    }
+  }
+
+  onChange = (event) => {
+    let product = this.state.product
+    product[event.target.name] = event.target.value
+
+    if (event.target.name === 'name') {
+      product.slug = slug(event.target.value)
+    }
+
+    this.setState({
+      product
+    })
+  }
+
+  onChangeSelect = (event) => {
+    let product = this.state.product
+    product[event.target.name] = parseInt(event.target.value)
+
+    this.setState({
+      product
+    })
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault()
+
+    this.setState({
+      isLoading: true
+    })
+
+    this.props.messageShow('Saving product, please wait...')
+
+    // Save product
+    this.props.productCreateOrUpdate(this.state.product)
+      .then(response => {
+        this.setState({
+          isLoading: false
+        })
+
+        if (response.data.errors && response.data.errors.length > 0) {
+          this.props.messageShow(response.data.errors[0].message)
+        } else {
+          this.props.messageShow('Signed up successfully.')
+
+          this.props.history.push(admin.productList.path)
+        }
+      })
+      .catch(error => {
+        this.props.messageShow('There was some error. Please try again.')
+
+        this.setState({
+          isLoading: false
+        })
+      })
+      .then(() => {
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
+      })
+  }
+
+  onUpload = (event) => {
+    this.props.messageShow('Uploading file, please wait...')
+
+    this.setState({
+      isLoading: true
+    })
+
+    let data = new FormData()
+    data.append('file', event.target.files[0])
+
+    // Upload image
+    this.props.upload(data)
+      .then(response => {
+        if (response.status === 200) {
+          this.props.messageShow('File uploaded successfully.')
+
+          let product = this.state.product
+          product.image = `/images/uploads/${ response.data.file }`
+
+          this.setState({
+            product
+          })
+        } else {
+          this.props.messageShow('Please try again.')
+        }
+      })
+      .catch(error => {
+        this.props.messageShow('There was some error. Please try again.')
+
+      })
+      .then(() => {
+        this.setState({
+          isLoading: false
+        })
+
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
+      })
   }
 
   render() {

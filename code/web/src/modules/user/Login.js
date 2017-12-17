@@ -24,6 +24,19 @@ import AuthCheck from '../auth/AuthCheck'
 
 // Component
 class Login extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      user: {
+        email: '',
+        password: '',
+      }
+    }
+
+    // Function bindings
+  }
+
   onChange = (event) => {
     let user = this.state.user
     user[event.target.name] = event.target.value
@@ -32,6 +45,7 @@ class Login extends Component {
       user
     })
   }
+
   onSubmit = (event) => {
     event.preventDefault()
 
@@ -56,19 +70,6 @@ class Login extends Component {
           this.props.messageHide()
         }, 5000)
       })
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      user: {
-        email: '',
-        password: '',
-      }
-    }
-
-    // Function bindings
   }
 
   render() {
