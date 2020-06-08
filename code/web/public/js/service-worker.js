@@ -21,6 +21,7 @@ var filesToCache = [
   '/js/bundles/app.js',
   '/css/reset.css',
   '/css/common.css',
+  '/css/common.css',
   '/images/collage.png'
 ];
 
