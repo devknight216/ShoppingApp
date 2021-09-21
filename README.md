@@ -132,18 +132,6 @@ Click on image to view fullscreen and zoom
         - Run API alone `npm start:api`, browse GraphiQL at http://localhost:8000/
         - Run Webapp alone `npm start:web`, browse webapp at http://localhost:3000/
 
-## Resources and Inspirations
-- ✍️ Opinionated project architecture for Full-Stack JavaScript Applications - [GitHub](https://github.com/atulmy/fullstack-javascript-architecture)
-- 🌈 Simple Fullstack GraphQL Application - [GitHub](https://github.com/atulmy/fullstack-graphql)
-- 🌐 Universal react application with server side rendering - [GitHub](https://github.com/atulmy/universal-react)
-- Container Components - [Medium Post](https://medium.com/@learnreact/container-components-c0e67432e005)
-- Zero to GraphQL in 30 Minutes - [YouTube](https://www.youtube.com/watch?v=UBGzsb2UkeY&list=PLkuiMQfg5DujhOSZ1A8kDl0hKV_ICTjp-)
-- Building a GraphQL Server [YouTube Playlist](https://www.youtube.com/playlist?list=PLillGF-RfqbYZty73_PHBqKRDnv7ikh68)
-- Universal JavaScript Web Applications with React by [Luciano Mammino](https://github.com/lmammino) - [YouTube](https://www.youtube.com/watch?v=0VEwRFP8WtI)
-- Building Youtube UI in React Native in 30 Mins - [YouTube](https://www.youtube.com/watch?v=LdKtugH-sb8)
-- Building Stellar Mobile UX With React Native - [YouTube](https://www.youtube.com/watch?v=ssXB9RMTpTs)
-- Free MySQL hosting https://remotemysql.com
-
 
 ## Why open source a project and not a boilerplate or framework?
 - While building a new project with Node, you can basically start scratch, adding libraries and tools as you go on building it further.
